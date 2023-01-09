@@ -1,16 +1,16 @@
-cbonsai(6)
+csakura(6)
 
 # NAME
 
-cbonsai - grow bonsai trees in your terminal
+csakura - grow sakura trees in your terminal
 
 # SYNOPSIS
 
-cbonsai [OPTION]...
+csakura [OPTION]...
 
 # DESCRIPTION
 
-cbonsai is a beautifully random bonsai tree generator.
+csakura is a beautifully random sakura tree generator.
 
 # OPTIONS
 
@@ -51,19 +51,13 @@ cbonsai is a beautifully random bonsai tree generator.
 	seed random number generator
 
 *-W*, *--save*=_FILE_
-	save progress to file [default: ~/.cache/cbonsai]
+	save progress to file [default: ~/.cache/csakura]
 
 *-C*, *--load*=_FILE_
-	load progress from file [default: ~/.cache/cbonsai]
+	load progress from file [default: ~/.cache/csakura]
 
 *-v*, *--verbose*
 	increase output verbosity
 
 *-h*, *--help*
 	show help
-
-# AUTHORS
-
-Maintained by John Allbritten <me@johnallbritten.com>, who is assisted by other
-open source contributors. For more information about cbonsai development, see
-<https://gitlab.com/jallbrit/cbonsai>.

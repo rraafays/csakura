@@ -6,27 +6,27 @@ LDLIBS	= $(shell $(PKG_CONFIG) --libs ncursesw panelw || echo "-lncursesw -ltinf
 PREFIX	= /usr/local
 MANDIR	= $(PREFIX)/share/man
 
-cbonsai: cbonsai.c
+csakura: csakura.c
 
-cbonsai.6: cbonsai.scd
+csakura.6: csakura.scd
 ifeq ($(shell command -v scdoc 2>/dev/null),)
 	$(warning Missing dependency: scdoc. The man page will not be generated.)
 else
 	scdoc <$< >$@
 endif
 
-install: cbonsai cbonsai.6
+install: csakura csakura.6
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	mkdir -p $(DESTDIR)$(MANDIR)/man6
-	install -m 0755 cbonsai $(DESTDIR)$(PREFIX)/bin/cbonsai
-	[ ! -f cbonsai.6 ] || install -m 0644 cbonsai.6 $(DESTDIR)$(MANDIR)/man6/cbonsai.6
+	install -m 0755 csakura $(DESTDIR)$(PREFIX)/bin/csakura
+	[ ! -f csakura.6 ] || install -m 0644 csakura.6 $(DESTDIR)$(MANDIR)/man6/csakura.6
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/cbonsai
-	rm -f $(DESTDIR)$(MANDIR)/man6/cbonsai.6
+	rm -f $(DESTDIR)$(PREFIX)/bin/csakura
+	rm -f $(DESTDIR)$(MANDIR)/man6/csakura.6
 
 clean:
-	rm -f cbonsai
-	rm -f cbonsai.6
+	rm -f csakura
+	rm -f csakura.6
 
 .PHONY: install uninstall clean

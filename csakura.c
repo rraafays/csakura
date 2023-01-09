@@ -123,9 +123,9 @@ void finish(const struct config *conf, struct counters *myCounters) {
 
 void printHelp(void) {
 	printf("%s",
-		"Usage: cbonsai [OPTION]...\n"
+		"Usage: csakura [OPTION]...\n"
 	        "\n"
-	        "cbonsai is a beautifully random bonsai tree generator.\n"
+	        "csakura is a beautifully random sakura tree generator.\n"
 	        "\n"
 	        "Options:\n"
 	        "  -l, --live             live mode: show each step of growth\n"
@@ -145,8 +145,8 @@ void printHelp(void) {
 	        "  -L, --life=INT         life; higher -> more growth (0-200) [default: 32]\n"
 	        "  -p, --print            print tree to terminal when finished\n"
 	        "  -s, --seed=INT         seed random number generator\n"
-	        "  -W, --save=FILE        save progress to file [default: $XDG_CACHE_HOME/cbonsai or $HOME/.cache/cbonsai]\n"
-	        "  -C, --load=FILE        load progress from file [default: $XDG_CACHE_HOME/cbonsai]\n"
+	        "  -W, --save=FILE        save progress to file [default: $XDG_CACHE_HOME/csakura or $HOME/.cache/csakura]\n"
+	        "  -C, --load=FILE        load progress from file [default: $XDG_CACHE_HOME/csakura]\n"
 	        "  -v, --verbose          increase output verbosity\n"
 	        "  -h, --help             show help\n"
     );
@@ -160,7 +160,7 @@ void drawBase(WINDOW* baseWin, int baseType) {
 		wprintw(baseWin, "%s", ":");
 		wattron(baseWin, COLOR_PAIR(2));
 		wprintw(baseWin, "%s", "___________");
-		wattron(baseWin, COLOR_PAIR(11));
+		wattron(baseWin, COLOR_PAIR(15));
 		wprintw(baseWin, "%s", "./~~~\\.");
 		wattron(baseWin, COLOR_PAIR(2));
 		wprintw(baseWin, "%s", "___________");
@@ -178,7 +178,7 @@ void drawBase(WINDOW* baseWin, int baseType) {
 		wprintw(baseWin, "%s", "(");
 		wattron(baseWin, COLOR_PAIR(2));
 		wprintw(baseWin, "%s", "---");
-		wattron(baseWin, COLOR_PAIR(11));
+		wattron(baseWin, COLOR_PAIR(15));
 		wprintw(baseWin, "%s", "./~~~\\.");
 		wattron(baseWin, COLOR_PAIR(2));
 		wprintw(baseWin, "%s", "---");
@@ -260,18 +260,18 @@ void chooseColor(enum branchType type, WINDOW* treeWin) {
 	case trunk:
 	case shootLeft:
 	case shootRight:
-		if (rand() % 2 == 0) wattron(treeWin, A_BOLD | COLOR_PAIR(11));
-		else wattron(treeWin, COLOR_PAIR(3));
+		if (rand() % 2 == 0) wattron(treeWin, A_BOLD | COLOR_PAIR(8));
+		else wattron(treeWin, COLOR_PAIR(15));
 		break;
 
 	case dying:
-		if (rand() % 10 == 0) wattron(treeWin, A_BOLD | COLOR_PAIR(2));
-		else wattron(treeWin, COLOR_PAIR(2));
+		if (rand() % 10 == 0) wattron(treeWin, A_BOLD | COLOR_PAIR(5));
+		else wattron(treeWin, COLOR_PAIR(5));
 		break;
 
 	case dead:
-		if (rand() % 3 == 0) wattron(treeWin, A_BOLD | COLOR_PAIR(10));
-		else wattron(treeWin, COLOR_PAIR(10));
+		if (rand() % 3 == 0) wattron(treeWin, A_BOLD | COLOR_PAIR(5));
+		else wattron(treeWin, COLOR_PAIR(5));
 		break;
 	}
 }
@@ -756,7 +756,7 @@ char* createDefaultCachePath(void) {
 	// follow XDG Base Directory Specification for default cache file path
 	const char* env_XDG_CACHE_HOME = getenv("XDG_CACHE_HOME");
 	if (env_XDG_CACHE_HOME && (envlen = strlen(env_XDG_CACHE_HOME))) {
-		toAppend = "/cbonsai";
+		toAppend = "/csakura";
 
 		// create result buffer
 		result = malloc(envlen + strlen(toAppend) + 1);
@@ -768,7 +768,7 @@ char* createDefaultCachePath(void) {
 	// if we don't have $XDG_CACHE_HOME, try $HOME
 	const char* env_HOME = getenv("HOME");
 	if (env_HOME && (envlen = strlen(env_HOME))) {
-		toAppend = "/.cache/cbonsai";
+		toAppend = "/.cache/csakura";
 
 		// create result buffer
 		result = malloc(envlen + strlen(toAppend) + 1);
@@ -777,8 +777,8 @@ char* createDefaultCachePath(void) {
 		return result;
 	}
 
-	// if we also don't have $HOME, just use ./cbonsai
-	toAppend = "cbonsai";
+	// if we also don't have $HOME, just use ./csakura
+	toAppend = "csakura";
 	result = malloc(strlen(toAppend) + 1);
 	strcpy(result, toAppend);
 	return result;
